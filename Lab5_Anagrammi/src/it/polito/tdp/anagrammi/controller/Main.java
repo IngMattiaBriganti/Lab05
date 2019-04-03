@@ -1,11 +1,11 @@
 package it.polito.tdp.anagrammi.controller;
-	
+
+import it.polito.tdp.anagrammi.model.Model;
 import javafx.application.Application;
-import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.fxml.FXMLLoader;
-
+import javafx.stage.Stage;
 
 public class Main extends Application {
 	@Override
@@ -15,8 +15,20 @@ public class Main extends Application {
 			BorderPane root = (BorderPane)loader.load();
 		
 			Scene scene = new Scene(root,400,400);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			
+			Model model =new Model();
+			AnagrammiController controller = loader.getController();
+			
+			
+			controller.setModel(model);
+			
 			primaryStage.show();
+
+			
+			
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
